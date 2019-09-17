@@ -1,15 +1,31 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+import AppWelcome from '@/components/AppWelcome'
+import AppChat from '@/components/AppChat'
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
-  routes: [
-    {
-      path: '/',
-      name: 'HelloWorld',
-      component: HelloWorld
-    }
-  ]
+	mode: 'history',
+	routes: [
+		{
+			path: '/',
+			name: 'Welcome',
+			component: AppWelcome
+		},
+		{
+			path: '/chat',
+			name: 'Chat',
+			component: AppChat,
+			props: true,
+			beforeEnter: (to, from, next)=> {
+				console.log(to.params.name);
+				if(to.params.name) {
+					next()
+				} else {
+					next({name: 'Welcome'})
+				}
+			}
+		}
+	]
 })
