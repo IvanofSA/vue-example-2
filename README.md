@@ -1,6 +1,6 @@
-# vue-example-2
+# Vue + firebase 
 
-> A Vue.js project
+> Vue chat
 
 ## Build Setup
 
